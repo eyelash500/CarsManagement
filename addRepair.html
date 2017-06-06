@@ -1,0 +1,194 @@
+<html>
+
+<head>
+    <title>Add Repair Info</title>
+    <script src="JS/jquery-3.2.1.min.js"></script>
+    <script src="JS/semantic.min.js"></script>
+    <script type="text/javascript" src="node_modules/semantic-ui-calendar/dist/calendar.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" class="ui" href="CSS/semantic.min.css">
+    <link rel="stylesheet" href="node_modules/semantic-ui-calendar/dist/calendar.min.css" />
+    <style type="text/css">
+        body {
+            margin: 5%;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Add Repair Info</h2>
+</body>
+<form class="ui form">
+    <h4 class="ui dividing header">Vehicle Information</h4>
+    <div class="four fields">
+        <div class="field">
+            <label>Plate Number</label>
+            <input type="text" name="plateNumber" placeholder="Plate Number">
+        </div>
+        <div class="field">
+            <label>Vehicle Brand</label>
+            <input type="text" name="vehicle[brand]" placeholder="Brand">
+        </div>
+        <div class="field">
+            <label>Vehicle Product</label>
+            <input type="text" name="vehicle[product]" placeholder="Type">
+        </div>
+        <div class="field">
+            <label>Manufacture Date</label>
+            <div class="ui calendar" id="manufactureDate">
+                <div class="ui input left icon">
+                    <i class="time icon"></i>
+                    <input type="text" placeholder="Time">
+                </div>
+            </div>
+        </div>
+    </div>
+    <h4 class="ui dividing header">Customer Information</h4>
+    <div class="equal width fields">
+        <div class="field">
+            <label>Customer Name</label>
+            <input type="text" id="name" name="customer[name]" placeholder="Name">
+        </div>
+        <div class="field">
+            <label>Gender</label>
+            <div class="ui selection dropdown">
+                <input type="hidden" name="gender">
+                <i class="dropdown icon"></i>
+                <div class="default text">Gender</div>
+                <div class="menu">
+                    <div class="item" data-value="1">Male</div>
+                    <div class="item" data-value="0">Female</div>
+                </div>
+            </div>
+        </div>
+        <div class="field">
+            <label>Birthday</label>
+            <div class="ui dateCalendar calendar">
+                <div class="ui input left icon">
+                    <i class="time icon"></i>
+                    <input type="text" id="birthday" placeholder="Time">
+                </div>
+            </div>
+        </div>
+        <div class="field">
+            <label>Age</label>
+            <div class="ui disabled input">
+                <input type="text" id="age">
+            </div>
+        </div>
+    </div>
+    <div class="field">
+        <label>Address</label>
+        <div class="ui input">
+            <input id="address">
+        </div>
+    </div>
+    <div class="equal width fields">
+        <div class="field">
+            <label>Cell Phone</label>
+            <div class="ui input">
+                <input id="cellphone" placeholder="cell phone">
+            </div>
+        </div>
+        <div class="field">
+            <label>Telephone</label>
+            <div class="ui input">
+                <input id="telephone" placeholder="phone">
+            </div>
+        </div>
+    </div>
+
+    <h4 class="ui dividing header">Repair Information</h4>
+    <div class="four fields">
+        <div class="field">
+            <label>Date</label>
+            <div class="ui dateCalendar calendar">
+                <div class="ui input left icon">
+                    <i class="calendar icon"></i>
+                    <input type="text" id="repairDate" placeholder="Date">
+                </div>
+            </div>
+        </div>
+        <div class="field">
+            <label>item</label>
+            <select id="repairItem" class="ui selection dropdown">
+                <option value="">Item</option>
+                <option value="wheels">Wheels</option>
+                <option value="Bulbs">Bulbs</option>
+                <option value="Chair">Chair</option>
+                <option value="Other">Other</option>
+            </select>
+        </div>
+        <div class="field">
+            <label>Cash</label>
+            <div class="ui input left icon">
+                <i class="payment icon"></i>
+                <input type="text" id="repairMoney" placeholder="$$$">
+            </div>
+
+        </div>
+        <div class="field">
+            <label>Detail</label>
+            <div class="ui input left icon">
+                <i class="motorcycle icon"></i>
+                <input type="text" id="repairDetail">
+            </div>
+        </div>
+    </div>
+
+    <h4 class="ui dividing header">Get</h4>
+    <div class="ui segment">
+        <div class="field">
+            <div class="ui toggle checkbox">
+                <input type="checkbox" id="isGetMoney" tabindex="0" class="hidden">
+                <label><i class="warning sign icon"></i>Pay the bill or not</label>
+            </div>
+        </div>
+    </div>
+    <div class="ui button" tabindex="0">Submit Order</div>
+</form>
+<script>
+    $(".ui.dropdown").dropdown();
+    $(".ui.toggle.checkbox").checkbox();
+    $('#manufactureDate').calendar({
+        type: 'month',
+        formatter: {
+            date: function (date, settings) {
+                if (!date) return '';
+                var month = date.getMonth() + 1;
+                var year = date.getFullYear();
+                return year + "/" + month;
+            }
+        }
+    });
+
+    var today = new Date();
+    $('.ui.dateCalendar.calendar').calendar({
+        type: 'date',
+        formatter: {
+            date: function (date, settings) {
+                if (!date) return '';
+                var day = date.getDate();
+                var month = date.getMonth() + 1;
+                var year = date.getFullYear();
+                return year + "/" + month + "/" + day;
+            }
+        },
+        maxDate: new Date(today.getFullYear(), today.getMonth(), today.getDate())
+    });
+    $("#birthday").on("blur", function (e) {
+        var birthday = new Date($("#birthday").prop("value"));
+        var years = today.getFullYear() - birthday.getFullYear();
+
+        // Reset birthday to the current year.
+        birthday.setFullYear(today.getFullYear());
+
+        // If the user's birthday has not occurred yet this year, subtract 1.
+        if (today < birthday) {
+            years--;
+        }
+        $("#age").prop("value", years);
+    });
+</script>
+
+</html>
