@@ -1,6 +1,7 @@
 <html>
 
 <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Add Repair Info</title>
     <script src="JS/jquery-3.2.1.min.js"></script>
     <script src="JS/semantic.min.js"></script>
@@ -16,29 +17,36 @@
 </head>
 
 <body>
-    <h2>Add Repair Info</h2>
+    <h2 class="ui sticky">Add Repair Info</h2>
 </body>
 <form class="ui form">
     <h4 class="ui dividing header">Vehicle Information</h4>
     <div class="four fields">
         <div class="field">
             <label>Plate Number</label>
-            <input type="text" name="plateNumber" placeholder="Plate Number">
+            <input type="text" id="plateNumber" name="plateNumber" placeholder="Plate Number">
         </div>
         <div class="field">
             <label>Vehicle Brand</label>
-            <input type="text" name="vehicle[brand]" placeholder="Brand">
+            <select class="ui search dropdown" id="vehicleBrand" name="vehicleBrand">
+                <option value="">Brand</option>
+                <option value="Kymco">Kymco</option>
+                <option value="Sym">Sym</option>
+                <option value="Yamaha">Yamaha</option>
+                <option value="Gogoro">Gogoro</option>
+                <option value="O">Other</option>
+            </select>
         </div>
         <div class="field">
             <label>Vehicle Product</label>
-            <input type="text" name="vehicle[product]" placeholder="Type">
+            <input type="text" id="vehicleProduct"placeholder="Type">
         </div>
         <div class="field">
             <label>Manufacture Date</label>
             <div class="ui calendar" id="manufactureDate">
                 <div class="ui input left icon">
                     <i class="time icon"></i>
-                    <input type="text" placeholder="Time">
+                    <input type="text" id="vehicleManufactureDate" placeholder="Time">
                 </div>
             </div>
         </div>
@@ -47,12 +55,12 @@
     <div class="equal width fields">
         <div class="field">
             <label>Customer Name</label>
-            <input type="text" id="name" name="customer[name]" placeholder="Name">
+            <input type="text" id="customerName" placeholder="Name">
         </div>
         <div class="field">
             <label>Gender</label>
             <div class="ui selection dropdown">
-                <input type="hidden" name="gender">
+                <input type="hidden" id="gender" >
                 <i class="dropdown icon"></i>
                 <div class="default text">Gender</div>
                 <div class="menu">
@@ -66,7 +74,7 @@
             <div class="ui dateCalendar calendar">
                 <div class="ui input left icon">
                     <i class="time icon"></i>
-                    <input type="text" id="birthday" placeholder="Time">
+                    <input type="text" id="birthday" data-validate="date" placeholder="Time">
                 </div>
             </div>
         </div>
@@ -99,17 +107,17 @@
     </div>
 
     <h4 class="ui dividing header">Repair Information</h4>
-    <div class="four fields">
-        <div class="field">
+    <div class="fields">
+        <div class="two wide field">
             <label>Date</label>
             <div class="ui dateCalendar calendar">
                 <div class="ui input left icon">
                     <i class="calendar icon"></i>
-                    <input type="text" id="repairDate" placeholder="Date">
+                    <input type="text" id="repairDate" data-validate="date" placeholder="Date">
                 </div>
             </div>
         </div>
-        <div class="field">
+        <div class="three wide field">
             <label>item</label>
             <select id="repairItem" class="ui selection dropdown">
                 <option value="">Item</option>
@@ -119,15 +127,14 @@
                 <option value="Other">Other</option>
             </select>
         </div>
-        <div class="field">
+        <div class="two wide field">
             <label>Cash</label>
             <div class="ui input left icon">
                 <i class="payment icon"></i>
                 <input type="text" id="repairMoney" placeholder="$$$">
             </div>
-
         </div>
-        <div class="field">
+        <div class="nine wide field">
             <label>Detail</label>
             <div class="ui input left icon">
                 <i class="motorcycle icon"></i>
@@ -145,9 +152,11 @@
             </div>
         </div>
     </div>
-    <div class="ui button" tabindex="0">Submit Order</div>
+    <div class="ui primary submit button">Submit Order</div>
+    <div class="ui error message"></div>
 </form>
 <script>
+    $(".ui.sticky").sticky();
     $(".ui.dropdown").dropdown();
     $(".ui.toggle.checkbox").checkbox();
     $('#manufactureDate').calendar({
@@ -159,12 +168,16 @@
                 var year = date.getFullYear();
                 return year + "/" + month;
             }
+        },
+        text: {
+            monthsShort: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
         }
     });
 
     var today = new Date();
     $('.ui.dateCalendar.calendar').calendar({
         type: 'date',
+        today: true,
         formatter: {
             date: function (date, settings) {
                 if (!date) return '';
@@ -174,7 +187,12 @@
                 return year + "/" + month + "/" + day;
             }
         },
-        maxDate: new Date(today.getFullYear(), today.getMonth(), today.getDate())
+        maxDate: new Date(today.getFullYear(), today.getMonth(), today.getDate()),
+        text: {
+            months: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
+            monthsShort: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+            today: "今天"
+        }
     });
     $("#birthday").on("blur", function (e) {
         var birthday = new Date($("#birthday").prop("value"));
@@ -189,6 +207,53 @@
         }
         $("#age").prop("value", years);
     });
+
+    $('.ui.form').form({
+        on: 'blur',
+        fields: {
+            plateNumber: {
+                identifier: 'plateNumber',
+                rules: [{
+                    type: 'empty',
+                    prompt: 'Please enter Number'
+                }]
+            }
+            ,date_month: {
+                identifier: 'vehicleManufactureDate',
+                rules: [{
+                    type: 'regExp',
+                    value: /[1,2][9,0]\d{2}\/\d{1,2}/i,
+                    prompt: 'Please enter date'
+                }]
+            }
+            ,gender:{
+                identifier: 'gender',
+                rules:[{
+                    type: 'empty',
+                    prompt: 'Please select gender'
+                }]
+            }
+            ,date: {
+                identifier: "date",
+                rules:[{
+                    type: 'regExp',
+                    value: /[1,2][9,0]\d{2}\/\d{1,2}\/\d{1,2}/i,
+                    prompt: 'Please enter date'
+                }]
+            }
+            ,money:{
+                identifier: "repairMoney",
+                optional: true,
+                rules:[{
+                    type:"integer[0..500000]",
+                    prompt: "Pleas correct money, max is 500000"
+
+                }]
+            }
+        }
+    });
+
+
 </script>
 
 </html>
