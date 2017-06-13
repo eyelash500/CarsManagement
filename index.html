@@ -1,7 +1,7 @@
 <html>
 
 <head>
-    <title>Cars Manage</title>
+    <title>機車維護</title>
 
     <script src="JS/jquery-3.2.1.min.js"></script>
     <script src="JS/semantic.min.js"></script>
@@ -39,33 +39,29 @@
                 <p style="margin:0;"></p>
         </div>
         <div class="content">
-            Log-in to your account
+            請登入使用者帳號
         </div>
         </h2>
-        <form class="ui large form">
+        <form class="ui large form" action="./maintenance.html">
             <div class="ui stacked segment">
                 <div class="field">
                     <div class="ui left icon input">
                         <i class="user icon"></i>
-                        <input type="text" name="email" placeholder="E-mail address">
+                        <input type="text" name="email" placeholder="帳號">
                     </div>
                 </div>
                 <div class="field">
                     <div class="ui left icon input">
                         <i class="lock icon"></i>
-                        <input type="password" name="password" placeholder="Password">
+                        <input type="password" name="password" placeholder="密碼">
                     </div>
                 </div>
-                <div class="ui fluid large teal submit button">Login</div>
+                <div class="ui fluid large teal submit button">登入</div>
             </div>
 
             <div class="ui error message"></div>
 
         </form>
-
-        <div class="ui message">
-            New to us? <a href="#">Sign Up</a>
-        </div>
     </div>
     </div>
 
@@ -77,11 +73,7 @@
                         identifier: 'email',
                         rules: [{
                                 type: 'empty',
-                                prompt: 'Please enter your e-mail'
-                            },
-                            {
-                                type: 'email',
-                                prompt: 'Please enter a valid e-mail'
+                                prompt: '請輸入帳號'
                             }
                         ]
                     },
@@ -89,11 +81,11 @@
                         identifier: 'password',
                         rules: [{
                                 type: 'empty',
-                                prompt: 'Please enter your password'
+                                prompt: '請輸入密碼'
                             },
                             {
                                 type: 'length[6]',
-                                prompt: 'Your password must be at least 6 characters'
+                                prompt: '密碼少於六個字'
                             }
                         ]
                     }
