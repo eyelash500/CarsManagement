@@ -152,7 +152,12 @@
                 </div>
             </div>
         </div>
-        <div class="ui primary submit button">送出資料</div>
+        <div class="inline field">
+            <div class="ui primary submit button">送出資料</div>
+            <a href="./maintenance.html">
+                <div class="ui purple button">返回</div>
+            </a>
+        </div>
         <div class="ui error message"></div>
     </form>
     <script>
@@ -269,11 +274,11 @@
             $("#maintenanceDetail").prop("value", detail);
 
             console.log(
-                "date:"+ date +
-                "plate NO:"+ plateNO +
-                "item:"+ item +
-                "detail:"+ detail +
-                "cost:"+ cost 
+                "date:" + date +
+                "plate NO:" + plateNO +
+                "item:" + item +
+                "detail:" + detail +
+                "cost:" + cost
             );
 
         }
