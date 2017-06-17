@@ -5,10 +5,10 @@
     <title>新增維修資訊</title>
     <script src="JS/jquery-3.2.1.min.js"></script>
     <script src="JS/semantic.min.js"></script>
-    <script type="text/javascript" src="node_modules/semantic-ui-calendar/dist/calendar.min.js"></script>
+    <script type="text/javascript" src="JS/calendar.min.js"></script>
 
     <link rel="stylesheet" type="text/css" class="ui" href="CSS/semantic.min.css">
-    <link rel="stylesheet" href="node_modules/semantic-ui-calendar/dist/calendar.min.css" />
+    <link rel="stylesheet" href="CSS/calendar.min.css" />
     <style type="text/css">
         body {
             margin: 5%;
@@ -220,7 +220,7 @@
                     identifier: 'plateNumber',
                     rules: [{
                         type: 'empty',
-                        prompt: 'Please enter Number'
+                        prompt: '請輸入車牌'
                     }]
                 },
                 date_month: {
@@ -228,14 +228,14 @@
                     rules: [{
                         type: 'regExp',
                         value: /[1,2][9,0]\d{2}\/\d{1,2}/i,
-                        prompt: 'Please enter date'
+                        prompt: '請輸入時間'
                     }]
                 },
                 gender: {
                     identifier: 'gender',
                     rules: [{
                         type: 'empty',
-                        prompt: 'Please select gender'
+                        prompt: '請輸入性別'
                     }]
                 },
                 date: {
@@ -243,7 +243,7 @@
                     rules: [{
                         type: 'regExp',
                         value: /[1,2][9,0]\d{2}\/\d{1,2}\/\d{1,2}/i,
-                        prompt: 'Please enter date'
+                        prompt: '請輸入日期'
                     }]
                 },
                 money: {
@@ -251,7 +251,7 @@
                     optional: true,
                     rules: [{
                         type: "integer[0..500000]",
-                        prompt: "Pleas correct money, max is 500000"
+                        prompt: "最高金額：500000"
 
                     }]
                 }
