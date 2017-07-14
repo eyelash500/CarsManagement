@@ -8,7 +8,7 @@
     <script type="text/javascript" src="JS/calendar.min.js"></script>
 
     <link rel="stylesheet" type="text/css" class="ui" href="CSS/semantic.min.css">
-    <link rel="stylesheet" href="CS/calendar.min.css" />
+    <link rel="stylesheet" href="CSS/calendar.min.css" />
     <style type="text/css">
         body {
             margin: 5%;
@@ -62,71 +62,11 @@
                 <th>金額</th>
             </tr>
         </thead>
-        <tbody>
-            <tr>
-                <td>
-                    2017/2/2
-                </td>
-                <td>AAA-765</td>
-                <td>燈泡</td>
-                <td>換兩個燈泡</td>
-                <td>500</td>
-                <td><button type="button" class="ui green button" id="btn1">查看</button></td>
-            </tr>
-            <tr>
-                <td>2017/4/5</td>
-                <td>AAA-765</td>
-                <td>換機油</td>
-                <td>10W-50</td>
-                <td>400</td>
-                <td><button type="button" class="ui green button" id="btn2">查看</button></td>
-            </tr>
-            <tr>
-                <td>2017/6/6</td>
-                <td>AAA-765</td>
-                <td>換機油</td>
-                <td>10W-50</td>
-                <td>400</td>
-                <td><button type="button" class="ui green button" id="btn3">查看</button></td>
-            </tr>
-        </tbody>
+        <tbody id="tbMaintenanceList"></tbody>
     </table>
 
-    <script>
-        var today = new Date();
-        $(".ui.dateCalendar.calendar").calendar({
-            type: "date",
-            today: true,
-            formatter: {
-                date: function (date, settings) {
-                    if (!date) return "";
-                    var day = date.getDate();
-                    var month = date.getMonth() + 1;
-                    var year = date.getFullYear();
-                    return year + "/" + month + "/" + day;
-                }
-            },
-            maxDate: new Date(today.getFullYear(), today.getMonth(), today.getDate()),
-            text: {
-                months: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
-                monthsShort: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-                today: "今天"
-            }
-        });
-
-        $("#btn1").on("click", function () {
-            var urlStr = encodeURIComponent("date=2017/2/2&plate=AAA-765&item=Bulbs&detail=換兩個燈泡&cost=500");
-            window.location.href = "./modiMaintenance.html" + "?" + urlStr;
-        });
-        $("#btn2").on("click", function () {
-            var urlStr = "date=2017/4/5&plate=AAA-765&item=Oil&detail=10W-50&cost=400";
-            window.location.href = "modiMaintenance.html" + "?" + urlStr;
-        });
-        $("#btn3").on("click", function () {
-            var urlStr = "date=2017/6/6&plate=AAA-765&item=Oil&detail=10W-50&cost=400";
-            window.location.href = "modiMaintenance.html" + "?" + urlStr;
-        });
-    </script>
+    <script src="App/checkLogin.js"></script>
+    <script src="App/maintenance.js"></script>
 </body>
 
 </html>

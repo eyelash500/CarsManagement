@@ -30,7 +30,9 @@
         <div class="column">
             <h2 class="ui teal image header">
                 <div class="getty embed image" style="background-color:#fff;display:inline-block;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;color:#a7a7a7;font-size:11px;width:50%;max-width:616px;">
-                    <div style="padding:0;margin:0;text-align:left;"><a href="http://www.gettyimages.com/detail/176040167" target="_blank" style="color:#a7a7a7;text-decoration:none;font-weight:normal !important;border:none;display:inline-block;">Embed from Getty Images</a></div>
+                     <div style="padding:0;margin:0;text-align:left;">
+                         <a href="http://www.gettyimages.com/detail/176040167" target="_blank" style="color:#a7a7a7;text-decoration:none;font-weight:normal !important;border:none;display:inline-block;">Embed from Getty Images</a>
+                        </div> 
                     <div
                         style="overflow:hidden;position:relative;height:0;padding:45.129870% 0 0 0;width:100%;">
                         <iframe src="//embed.gettyimages.com/embed/176040167?et=qnLOqHFtSy9-zqnRnEJFaA&tld=com&viewMoreLink=off&sig=feRbWnajGu1GXLdBHMuetMhqdZRzgvLPiX7_Pmp2Erg=&caption=true"
@@ -42,18 +44,18 @@
             請登入使用者帳號
         </div>
         </h2>
-        <form class="ui large form" action="./maintenance.html">
+        <form class="ui large form" >
             <div class="ui stacked segment">
                 <div class="field">
                     <div class="ui left icon input">
                         <i class="user icon"></i>
-                        <input type="text" name="email" placeholder="帳號">
+                        <input type="text" id="account" name="account" placeholder="帳號">
                     </div>
                 </div>
                 <div class="field">
                     <div class="ui left icon input">
                         <i class="lock icon"></i>
-                        <input type="password" name="password" placeholder="密碼">
+                        <input type="password" id="password" name="password" placeholder="密碼">
                     </div>
                 </div>
                 <div class="ui fluid large teal submit button">登入</div>
@@ -65,34 +67,7 @@
     </div>
     </div>
 
-    <script>
-        $(document).ready(function () {
-            $('.ui.form').form({
-                fields: {
-                    email: {
-                        identifier: 'email',
-                        rules: [{
-                                type: 'empty',
-                                prompt: '請輸入帳號'
-                            }
-                        ]
-                    },
-                    password: {
-                        identifier: 'password',
-                        rules: [{
-                                type: 'empty',
-                                prompt: '請輸入密碼'
-                            },
-                            {
-                                type: 'length[6]',
-                                prompt: '密碼少於六個字'
-                            }
-                        ]
-                    }
-                }
-            });
-        });
-    </script>
+    <script src="App/login.js"></script>
 
 </body>
 
