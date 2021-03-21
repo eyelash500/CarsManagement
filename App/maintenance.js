@@ -10,7 +10,7 @@ $(function () {
                 var day = date.getDate();
                 var month = date.getMonth() + 1;
                 var year = date.getFullYear();
-                return year + "/" + month + "/" + day;
+                return year + "-" + month + "-" + day;
             }
         },
         maxDate: new Date(today.getFullYear(), today.getMonth(), today.getDate()),
@@ -21,9 +21,14 @@ $(function () {
         }
     });
 
+    /* func:click */
+    $("#tbMaintenanceList").delegate(".btnLookup", "click", function () {
+        window.location = "./modiMaintenance.html" +"?&id=" +$(this).val();
+    })
+
     $("#btn_search").click(function () {
         $.ajax({
-            url: "./Controllers/GetMaintenanceList.php",
+            url: "./Controllers/getMaintenanceList.php",
             type: "POST",
             dataType: "json",
             data: {
@@ -31,7 +36,6 @@ $(function () {
                 Date: $("#search_date").val()
             },
             success: function (r) {
-                // console.log("data:" + r);
                 $("#tbMaintenanceList").empty();
                 var maintenanceList = "";
                 for (var key in r) {

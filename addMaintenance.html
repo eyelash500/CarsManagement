@@ -18,7 +18,7 @@
 
 <body>
     <h2 class="ui sticky">新增維修資訊</h2>
-    <form class="ui form" action="./maintenance.html">
+    <form class="ui form">
         <h4 class="ui dividing header">機車資訊</h4>
         <div class="four fields">
             <div class="field">
@@ -28,13 +28,17 @@
             <div class="field">
                 <label>品牌</label>
                 <select class="ui search dropdown" id="vehicleBrand" name="vehicleBrand">
-                <option value="">品牌</option>
-                <option value="Kymco">Kymco</option>
-                <option value="Sym">Sym</option>
-                <option value="Yamaha">Yamaha</option>
-                <option value="Gogoro">Gogoro</option>
-                <option value="O">Other</option>
-            </select>
+                    <option value="">品牌</option>
+                    <option value="Kymco">Kymco</option>
+                    <option value="Sym">Sym</option>
+                    <option value="Yamaha">Yamaha</option>
+                    <option value="比雅久">比雅久</option>
+                    <option value="宏嘉騰">宏嘉騰</option>
+                    <option value="力道">力道</option>
+                    <option value="Gogoro">Gogoro</option>
+                    <option value="O">其他</option>
+                </select>
+                <input type="text" id="otherBrand" placeholder="請輸入其他品牌" hidden>
             </div>
             <div class="field">
                 <label>機車型號</label>
@@ -73,7 +77,7 @@
                 <div class="ui dateCalendar calendar">
                     <div class="ui input left icon">
                         <i class="time icon"></i>
-                        <input type="text" id="birthday" data-validate="date" placeholder="出生年月日">
+                        <input type="text" id="birthday" placeholder="出生年月日">
                     </div>
                 </div>
             </div>
@@ -119,13 +123,13 @@
             <div class="three wide field">
                 <label>維修項目</label>
                 <select id="repairItem" class="ui selection dropdown">
-                <option value="">維修類別</option>
-                <option value="w">輪胎類</option>
-                <option value="b">燈泡類</option>
-                <option value="o">機油類</option>
-                <option value="c">椅子類</option>
-                <option value="z">其他</option>
-            </select>
+                    <option value="">維修類別</option>
+                    <option value="輪胎類">輪胎類</option>
+                    <option value="燈泡類">燈泡類</option>
+                    <option value="機油類">機油類</option>
+                    <option value="椅子類">椅子類</option>
+                    <option value="其他">其他</option>
+                </select>
             </div>
             <div class="two wide field">
                 <label>金額</label>
@@ -152,6 +156,14 @@
                 </div>
             </div>
         </div>
+
+        <h4 class="ui dividing header">備註</h4>
+        <div class="field">
+            <label>備註</label>
+            <div class="ui input">
+                <input id="remark" placeholder="備註資料">
+            </div>
+        </div>
         <div class="inline field">
             <div class="ui primary submit button">送出資料</div>
             <a href="./maintenance.html">
@@ -160,104 +172,8 @@
         </div>
         <div class="ui error message"></div>
     </form>
-    <script>
-        $(".ui.sticky").sticky();
-        $(".ui.dropdown").dropdown();
-        $(".ui.toggle.checkbox").checkbox();
-        $('#manufactureDate').calendar({
-            type: 'month',
-            formatter: {
-                date: function (date, settings) {
-                    if (!date) return '';
-                    var month = date.getMonth() + 1;
-                    var year = date.getFullYear();
-                    return year + "/" + month;
-                }
-            },
-            text: {
-                monthsShort: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
-            }
-        });
 
-        var today = new Date();
-        $('.ui.dateCalendar.calendar').calendar({
-            type: 'date',
-            today: true,
-            formatter: {
-                date: function (date, settings) {
-                    if (!date) return '';
-                    var day = date.getDate();
-                    var month = date.getMonth() + 1;
-                    var year = date.getFullYear();
-                    return year + "/" + month + "/" + day;
-                }
-            },
-            maxDate: new Date(today.getFullYear(), today.getMonth(), today.getDate()),
-            text: {
-                months: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
-                monthsShort: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-                today: "今天"
-            }
-        });
-        $("#birthday").on("blur", function (e) {
-            var birthday = new Date($("#birthday").prop("value"));
-            var years = today.getFullYear() - birthday.getFullYear();
-
-            // Reset birthday to the current year.
-            birthday.setFullYear(today.getFullYear());
-
-            // If the user's birthday has not occurred yet this year, subtract 1.
-            if (today < birthday) {
-                years--;
-            }
-            $("#age").prop("value", years);
-        });
-
-        $('.ui.form').form({
-            on: 'blur',
-            fields: {
-                plateNumber: {
-                    identifier: 'plateNumber',
-                    rules: [{
-                        type: 'empty',
-                        prompt: '請輸入車牌'
-                    }]
-                },
-                date_month: {
-                    identifier: 'vehicleManufactureDate',
-                    rules: [{
-                        type: 'regExp',
-                        value: /[1,2][9,0]\d{2}\/\d{1,2}/i,
-                        prompt: '請輸入時間'
-                    }]
-                },
-                gender: {
-                    identifier: 'gender',
-                    rules: [{
-                        type: 'empty',
-                        prompt: '請輸入性別'
-                    }]
-                },
-                date: {
-                    identifier: "date",
-                    rules: [{
-                        type: 'regExp',
-                        value: /[1,2][9,0]\d{2}\/\d{1,2}\/\d{1,2}/i,
-                        prompt: '請輸入日期'
-                    }]
-                },
-                money: {
-                    identifier: "repairMoney",
-                    optional: true,
-                    rules: [{
-                        type: "integer[0..500000]",
-                        prompt: "最高金額：500000"
-
-                    }]
-                }
-            }
-        });
-    </script>
+    <script src="App/addMaintenance.js"></script>
 
 </body>
 

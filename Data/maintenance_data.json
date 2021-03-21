@@ -1,0 +1,111 @@
+[
+    {
+        "maintenanceNO": 1,
+        "plateNumber": "123-ABC",
+        "vehicleData":
+        {
+            "manufactureDate":"2010-10",
+            "brand": "Kymco",
+            "product": "勁戰"
+        },
+        "customerData":
+        {
+            "name": "Tony",
+            "gendar": "M",
+            "birthday": "1990-1-1",
+            "address": "台北市測試區測試路200號9樓",
+            "cellphone": "0911123456",
+            "phone": "02-12345678"
+        },
+        "maintenanceData":
+        {
+            "date":"2017-7-15",
+            "repairItem": "w",
+            "money": "5000",
+            "detail": "換鯊魚王兩顆",
+            "payment": 1
+        }
+
+    }
+    ,{
+        "maintenanceNO": 2,
+        "plateNumber": "456-DEF",
+        "vehicleData":
+        {
+            "manufactureDate":"2012-10",
+            "brand": "Yamaha",
+            "product": "Cuxi"
+        },
+        "customerData":
+        {
+            "name": "Judy",
+            "gendar": "F",
+            "birthday": "1990-1-2",
+            "address": "新北市測試區測試路200號9樓",
+            "cellphone": "0911222333",
+            "phone": "02-12345555"
+        },
+        "maintenanceData":
+        {
+            "date":"2017-7-14",
+            "repairItem": "w",
+            "money": "5000",
+            "detail": "換鯊魚王兩顆",
+            "payment": 1
+        }
+    }
+    ,{
+        "maintenanceNO": 3,
+        "plateNumber": "456-DEF",
+        "vehicleData":
+        {
+            "manufactureDate":"2012-10",
+            "brand": "Yamaha",
+            "product": "Cuxi"
+        },
+        "customerData":
+        {
+            "name": "Judy",
+            "gendar": "F",
+            "birthday": "1990-1-2",
+            "address": "新北市測試區測試路200號9樓",
+            "cellphone": "0911222333",
+            "phone": "02-12345555"
+        },
+        "maintenanceData":
+        {
+            "date":"2017-6-6",
+            "repairItem": "Bulbs",
+            "money": "400",
+            "detail": "換車頭燈",
+            "payment": 1
+        }
+    }
+    ,{
+        "maintenanceNO": 4,
+        "plateNumber": "456-DEF",
+        "vehicleData":
+        {
+            "manufactureDate":"2012-10",
+            "brand": "Yamaha",
+            "product": "Cuxi"
+        },
+        "customerData":
+        {
+            "name": "Judy",
+            "gendar": "F",
+            "birthday": "1990-1-2",
+            "address": "新北市測試區測試路200號9樓",
+            "cellphone": "0911222333",
+            "phone": "02-12345555"
+        },
+        "maintenanceData":
+        {
+            "date":"2017-6-14",
+            "repairItem": "Oil",
+            "money": "500",
+            "detail": "換黑油",
+            "payment": 1
+        }
+    }
+]

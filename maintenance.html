@@ -17,7 +17,7 @@
 </head>
 
 <body>
-    <form class="ui form">
+    <form class="ui form" id="formSearch">
         <div class="inline fields">
             <div class="field">
                 <input type="text" id="search_plateNO" placeholder="車牌">
@@ -33,18 +33,22 @@
                 </div>
             </div>
             <div class="field">
-                <button type="button" id="btn_search" class="ui button">搜尋</button>
+                <!-- <div class="ui labeled icon button"> -->
+                    <button type="button" id="btn_search" class="ui labeled icon button">
+                        <i class="search icon"></i>搜尋
+                    </button>     
+                <!-- </div> -->
             </div>
         </div>
     </form>
     <form class="ui form">
         <div class="inline equal wide fields">
             <div class="field">
-                <button type="button" class="ui button search" onclick="window.location='./addMaintenance.html'">新增</button>
+                <button type="button" class="ui blue button search" onclick="window.location='./addMaintenance.html'">新增</button>
             </div>
-            <div class="right field">
-                <button type="button" class="ui pink button search" onclick="window.location='./index.html'">登出</button>
-            </div>
+            <!-- <div class="right field">
+                <button type="button" class="ui pink button" onclick="window.location='./index.html'">登出</button>
+            </div> -->
         </div>
     </form>
 
